@@ -1,19 +1,12 @@
 package com.kodilla.tictactoe;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import java.util.LinkedList;
-import java.util.List;
-
-import static com.kodilla.tictactoe.MakeMove.makeMove;
 
 public class TicTacToe extends Application{
 
@@ -32,6 +25,9 @@ public class TicTacToe extends Application{
 
     public static void startGame(Stage primaryStage) {
 
+        MakeMove makeMove = new MakeMove();
+        Buttons buttons = new Buttons(makeMove);
+
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, false);
         BackgroundImage backgroundImage = new BackgroundImage(backgroundImg, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
         Background background = new Background(backgroundImage);
@@ -45,7 +41,7 @@ public class TicTacToe extends Application{
 
         Font font = new Font(80);
 
-        Buttons.createButtons(grid, primaryStage, font);
+        buttons.createButtons(grid, primaryStage, font);
 
         Scene scene = new Scene(grid, 750, 750);
         primaryStage.setTitle("Tic Tac Toe game");

@@ -10,11 +10,15 @@ import javafx.stage.Stage;
 import java.util.LinkedList;
 import java.util.List;
 
-import static com.kodilla.tictactoe.MakeMove.makeMove;
-
 public class Buttons {
 
-    public static void createButtons(GridPane grid, Stage primaryStage, Font font) {
+    private MakeMove makeMove;
+
+    public Buttons(MakeMove makeMove) {
+        this.makeMove = makeMove;
+    }
+
+    public void createButtons(GridPane grid, Stage primaryStage, Font font) {
 
         Button button0 = new Button();
         Button button1 = new Button();
@@ -60,18 +64,18 @@ public class Buttons {
         button0.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                makeMove(buttonList, primaryStage,font, button0);
+                makeMove.makeMove(buttonList, primaryStage,font, button0);
             }
         });
 
-        button1.setOnMouseClicked(event -> makeMove(buttonList, primaryStage,font, button1));
-        button2.setOnMouseClicked(e -> makeMove(buttonList, primaryStage,font, button2));
-        button3.setOnMouseClicked(e -> makeMove(buttonList, primaryStage,font, button3));
-        button4.setOnMouseClicked(e -> makeMove(buttonList, primaryStage,font, button4));
-        button5.setOnMouseClicked(e -> makeMove(buttonList, primaryStage,font, button5));
-        button6.setOnMouseClicked(e -> makeMove(buttonList, primaryStage,font, button6));
-        button7.setOnMouseClicked(e -> makeMove(buttonList, primaryStage,font, button7));
-        button8.setOnMouseClicked(e -> makeMove(buttonList, primaryStage,font, button8));
+        button1.setOnMouseClicked(event -> makeMove.makeMove(buttonList, primaryStage,font, button1));
+        button2.setOnMouseClicked(e -> makeMove.makeMove(buttonList, primaryStage,font, button2));
+        button3.setOnMouseClicked(e -> makeMove.makeMove(buttonList, primaryStage,font, button3));
+        button4.setOnMouseClicked(e -> makeMove.makeMove(buttonList, primaryStage,font, button4));
+        button5.setOnMouseClicked(e -> makeMove.makeMove(buttonList, primaryStage,font, button5));
+        button6.setOnMouseClicked(e -> makeMove.makeMove(buttonList, primaryStage,font, button6));
+        button7.setOnMouseClicked(e -> makeMove.makeMove(buttonList, primaryStage,font, button7));
+        button8.setOnMouseClicked(e -> makeMove.makeMove(buttonList, primaryStage,font, button8));
 
     }
 }
