@@ -1,5 +1,8 @@
 package com.kodilla.tictactoe;
 
+import com.kodilla.tictactoeJava.Board;
+import com.kodilla.tictactoeJava.CheckIfWin;
+import com.kodilla.tictactoeJava.Field;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -7,6 +10,9 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class TicTacToe extends Application{
 
@@ -18,15 +24,36 @@ public class TicTacToe extends Application{
 
     @Override
     public void start(Stage primaryStage) {
-
         startGame(primaryStage);
-
     }
 
     public static void startGame(Stage primaryStage) {
 
-        MakeMove makeMove = new MakeMove();
-        Buttons buttons = new Buttons(makeMove);
+        com.kodilla.tictactoeJava.CheckIfWin checkIfWin = new CheckIfWin();
+        List<Field> fieldList = new LinkedList<>();
+        Board board = new Board(fieldList, checkIfWin);
+
+        Field field0 = new Field("");
+        Field field1 = new Field("");
+        Field field2 = new Field("");
+        Field field3 = new Field("");
+        Field field4 = new Field("");
+        Field field5 = new Field("");
+        Field field6 = new Field("");
+        Field field7 = new Field("");
+        Field field8 = new Field("");
+
+        fieldList.add(field0);
+        fieldList.add(field1);
+        fieldList.add(field2);
+        fieldList.add(field3);
+        fieldList.add(field4);
+        fieldList.add(field5);
+        fieldList.add(field6);
+        fieldList.add(field7);
+        fieldList.add(field8);
+
+        Buttons buttons = new Buttons(board);
 
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, false);
         BackgroundImage backgroundImage = new BackgroundImage(backgroundImg, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
@@ -39,9 +66,7 @@ public class TicTacToe extends Application{
         grid.setHgap(60);
         grid.setBackground(background);
 
-        Font font = new Font(80);
-
-        buttons.createButtons(grid, primaryStage, font);
+        buttons.createButtons(grid, primaryStage);
 
         Scene scene = new Scene(grid, 750, 750);
         primaryStage.setTitle("Tic Tac Toe game");

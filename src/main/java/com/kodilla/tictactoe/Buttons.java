@@ -1,5 +1,7 @@
 package com.kodilla.tictactoe;
 
+import com.kodilla.tictactoeJava.Board;
+import com.kodilla.tictactoeJava.Field;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -12,13 +14,32 @@ import java.util.List;
 
 public class Buttons {
 
-    private MakeMove makeMove;
+    private Board board;
 
-    public Buttons(MakeMove makeMove) {
-        this.makeMove = makeMove;
+    public Buttons(Board board) {
+        this.board = board;
+    }
+    
+    public void move(int index, Stage primaryStage, List <Button> buttonList) {
+        String result = board.makeMove(index);
+        draw(board.getFieldList(), buttonList);
+        ResultBox.display(primaryStage, result);
     }
 
-    public void createButtons(GridPane grid, Stage primaryStage, Font font) {
+    public void draw(List <Field>fieldList, List <Button> buttonList) {
+
+        int n = 0;
+        while (n < 9) {
+            String sign = fieldList.get(n).getSign();
+            buttonList.get(n).setText(sign);
+            if (!sign.equals("")) {
+                buttonList.get(n).setDisable(true);
+            }
+            n++;
+        }
+    }
+
+    public void createButtons(GridPane grid, Stage primaryStage) {
 
         Button button0 = new Button();
         Button button1 = new Button();
@@ -61,7 +82,21 @@ public class Buttons {
         buttonList.add(button7);
         buttonList.add(button8);
 
-        button0.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        Font font = new Font(80);
+
+        buttonList.forEach(e -> e.setFont(font));
+
+        button0.setOnMouseClicked(e -> move(0, primaryStage, buttonList));
+        button1.setOnMouseClicked(e -> move(1, primaryStage, buttonList));
+        button2.setOnMouseClicked(e -> move(2, primaryStage, buttonList));
+        button3.setOnMouseClicked(e -> move(3, primaryStage, buttonList));
+        button4.setOnMouseClicked(e -> move(4, primaryStage, buttonList));
+        button5.setOnMouseClicked(e -> move(5, primaryStage, buttonList));
+        button6.setOnMouseClicked(e -> move(6, primaryStage, buttonList));
+        button7.setOnMouseClicked(e -> move(7, primaryStage, buttonList));
+        button8.setOnMouseClicked(e -> move(8, primaryStage, buttonList));
+
+/*        button0.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 makeMove.makeMove(buttonList, primaryStage,font, button0);
@@ -75,7 +110,7 @@ public class Buttons {
         button5.setOnMouseClicked(e -> makeMove.makeMove(buttonList, primaryStage,font, button5));
         button6.setOnMouseClicked(e -> makeMove.makeMove(buttonList, primaryStage,font, button6));
         button7.setOnMouseClicked(e -> makeMove.makeMove(buttonList, primaryStage,font, button7));
-        button8.setOnMouseClicked(e -> makeMove.makeMove(buttonList, primaryStage,font, button8));
+        button8.setOnMouseClicked(e -> makeMove.makeMove(buttonList, primaryStage,font, button8));*/
 
     }
 }

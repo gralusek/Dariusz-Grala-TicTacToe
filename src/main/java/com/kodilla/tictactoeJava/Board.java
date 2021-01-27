@@ -1,5 +1,7 @@
 package com.kodilla.tictactoeJava;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,6 +34,22 @@ public class Board {
             }
         }
 
+        String result = checkIfWinAfterMove(emptyIndexes);
+        if (result != null) return result;
+
+        Collections.shuffle(emptyIndexes);
+        int compMove = emptyIndexes.get(0);
+        Field compMoveField = fieldList.get(compMove);
+        compMoveField.setSign("O");
+
+        String result1 = checkIfWinAfterMove(emptyIndexes);
+        if (result1 != null) return result1;
+
+        return "Continue";
+    }
+
+    @Nullable
+    private String checkIfWinAfterMove(List<Integer> emptyIndexes) {
         String result = checkIfWin.checkIfWin(fieldList);
 
         if (result.equals("User win") || result.equals("Computer win")) {
@@ -39,12 +57,6 @@ public class Board {
         } else if (result.equals("Draw") && emptyIndexes.size() == 0) {
             return result;
         }
-
-        Collections.shuffle(emptyIndexes);
-        int compMove = emptyIndexes.get(0);
-        Field compMoveField = fieldList.get(compMove);
-        compMoveField.setSign("O");
-
-        return "Continue";
+        return null;
     }
 }
