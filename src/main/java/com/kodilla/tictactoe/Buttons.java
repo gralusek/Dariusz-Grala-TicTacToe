@@ -2,13 +2,10 @@ package com.kodilla.tictactoe;
 
 import com.kodilla.tictactoeJava.Board;
 import com.kodilla.tictactoeJava.Field;
-import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -84,6 +81,7 @@ public class Buttons {
 
         Font font = new Font(80);
 
+        //Zapis poniżej przez stream (.forEach), zastępuje zmieniane każdego po kolei)
         buttonList.forEach(e -> e.setFont(font));
 
         button0.setOnMouseClicked(e -> move(0, primaryStage, buttonList));
@@ -95,22 +93,5 @@ public class Buttons {
         button6.setOnMouseClicked(e -> move(6, primaryStage, buttonList));
         button7.setOnMouseClicked(e -> move(7, primaryStage, buttonList));
         button8.setOnMouseClicked(e -> move(8, primaryStage, buttonList));
-
-/*        button0.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                makeMove.makeMove(buttonList, primaryStage,font, button0);
-            }
-        });
-
-        button1.setOnMouseClicked(event -> makeMove.makeMove(buttonList, primaryStage,font, button1));
-        button2.setOnMouseClicked(e -> makeMove.makeMove(buttonList, primaryStage,font, button2));
-        button3.setOnMouseClicked(e -> makeMove.makeMove(buttonList, primaryStage,font, button3));
-        button4.setOnMouseClicked(e -> makeMove.makeMove(buttonList, primaryStage,font, button4));
-        button5.setOnMouseClicked(e -> makeMove.makeMove(buttonList, primaryStage,font, button5));
-        button6.setOnMouseClicked(e -> makeMove.makeMove(buttonList, primaryStage,font, button6));
-        button7.setOnMouseClicked(e -> makeMove.makeMove(buttonList, primaryStage,font, button7));
-        button8.setOnMouseClicked(e -> makeMove.makeMove(buttonList, primaryStage,font, button8));*/
-
     }
 }
